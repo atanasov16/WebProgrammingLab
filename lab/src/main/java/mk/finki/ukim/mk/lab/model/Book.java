@@ -11,13 +11,17 @@ public class Book {
     String genre;
     int year;
     List<Author> bookAuthors;
+    private long id;
+    private BookStore bookStore;
 
-    public Book(String isbn, String title, String genre, int year) {
+    public Book(String isbn, String title, String genre, int year, BookStore bookStore) {
         this.bookAuthors = new ArrayList<>();
         this.isbn = isbn;
         this.title = title;
         this.genre = genre;
         this.year = year;
+        this.id=(long) (Math.random()*1000);
+        this.bookStore = bookStore;
     }
 
     public String getIsbn() {
@@ -55,5 +59,10 @@ public class Book {
     public List<Author> getBookAuthors() {
         return bookAuthors;
     }
-
+    public String getBookStore(){
+        return bookStore.getName();
+    }
+    public Long getBookStoreId(){
+        return this.bookStore.getId();
+    }
 }

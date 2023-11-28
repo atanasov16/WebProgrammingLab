@@ -16,7 +16,7 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "author-servlet", urlPatterns = "/author")
+@WebServlet(name = "author-servlet", urlPatterns = "/servlet/author")
 public class AuthorServlet extends HttpServlet {
     private final SpringTemplateEngine springTemplateEngine;
     private final AuthorService authorService;

@@ -18,11 +18,20 @@
     <!-- Display radio buttons for each book,
             the value should be the isbn
             and the displayed text should be Title: <bookTitle>, Genre:<genre>, Year: <year> -->
-    <form method="get" action="/author">
+    <form method="get" th:action="'/author/list'">
         <ul th:each="book : ${books}">
-            <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}" th:text="'Title: ' + ${book.getTitle()} + ', Genre: ' + ${book.getGenre()} + ', Year: ' + ${book.getYear()}">
+            <input type="radio" name="selectedBookIsbn" th:value="${book.getIsbn()}" th:text="
+        'Title: ' + ${book.getTitle()} +
+        ', Genre: ' + ${book.getGenre()} +
+        ', Year: ' + ${book.getYear()} +
+        ', Book Store: ' + ${book.getBookStore()}">
+            <a th:href="'/books/delete/'+${book.getId()}">Delete</a>
+            <a th:href="'/books/edit/'+${book.getId()}">Edit</a>
         </ul>
         <input type="submit" value="Submit">
+    </form>
+    <form method="get" action="/books/add">
+        <input type="submit" value="Add Book"></br>
     </form>
 <!--    <input type="radio" name="bookIsbn" value="1"> Book 1 <br/>-->
 <!--    <input type="radio" name="bookIsbn" value="2"> Book 2<br/>-->

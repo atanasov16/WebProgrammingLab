@@ -32,7 +32,7 @@
 </header>
 <section>
     <h2>Select author:</h2>
-    <form th:method="post" action="/bookdetails">
+    <form th:method="post" th:action="'/author/bookdetails/'+${bookIsbn}">
         <ul th:each="author : ${authors}">
             <input type="radio" name="authorId" th:value="${author.getId()}" th:text="${author.getName()} + '  ' + ${author.getSurname()}" >
         </ul>
