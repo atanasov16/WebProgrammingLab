@@ -7,6 +7,8 @@ import mk.finki.ukim.mk.lab.service.BookStoreService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class BookStoreServiceImpl implements BookStoreService {
     private final BookStoreRepositoryJpa bookStoreRepository;
@@ -18,5 +20,10 @@ public class BookStoreServiceImpl implements BookStoreService {
     @Override
     public List<BookStore> findAll() {
         return bookStoreRepository.findAll();
+    }
+
+    @Override
+    public Optional<BookStore> save(String name, String country, String address) {
+        return Optional.of(bookStoreRepository.save(new BookStore(name, country, address)));
     }
 }

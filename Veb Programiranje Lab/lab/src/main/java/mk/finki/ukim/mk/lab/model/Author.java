@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -13,10 +14,11 @@ import java.time.LocalDate;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    String surname;
-    String biography;
+    private Long id;
+    private String name;
+    private String surname;
+    private String biography;
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDate dateOfBirth;
     public Author(){}
     public Author(Long id, String name, String surname) {

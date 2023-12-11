@@ -12,21 +12,21 @@ import java.util.Random;
 @Repository
 public class BookRepository{
     List<Book> bookList;
-    private final BookStoreRepository bookStoreRepository;
+
     public BookRepository(BookStoreRepository bookStoreRepository) {
-        this.bookStoreRepository = new BookStoreRepository();
+        BookStoreRepository bookStoreRepository1 = new BookStoreRepository();
         this.bookList = new ArrayList<>();
         Random random = new Random();
         int size = bookStoreRepository.findAll().size();
         BookStore bookStore = bookStoreRepository.findAll().get(random.nextInt(size));
         bookList.add(new Book("0060935464", "To Kill a Mockingbird", "Thriller", 1960, bookStore));
-        bookStore = this.bookStoreRepository.bookStores.get(random.nextInt(size));
+        bookStore = bookStoreRepository1.bookStores.get(random.nextInt(size));
         bookList.add(new Book("0358439191", "The Lord of the Rings", "Fiction", 1954,bookStore));
-        bookStore = this.bookStoreRepository.bookStores.get(random.nextInt(size));
+        bookStore = bookStoreRepository1.bookStores.get(random.nextInt(size));
         bookList.add(new Book("0060934344", "Don Quixote", "Fiction", 1605,bookStore));
-        bookStore = this.bookStoreRepository.bookStores.get(random.nextInt(size));
+        bookStore = bookStoreRepository1.bookStores.get(random.nextInt(size));
         bookList.add(new Book("0679723161", "Lolita", "Fiction", 1955,bookStore));
-        bookStore = this.bookStoreRepository.bookStores.get(random.nextInt(size));
+        bookStore = bookStoreRepository1.bookStores.get(random.nextInt(size));
         bookList.add(new Book("0385319959", "Outlander", "Romance", 1991,bookStore));
     }
 

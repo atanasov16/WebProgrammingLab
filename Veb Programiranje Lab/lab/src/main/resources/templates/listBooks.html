@@ -24,7 +24,8 @@
         'Title: ' + ${book.getTitle()} +
         ', Genre: ' + ${book.getGenre()} +
         ', Year: ' + ${book.getYear()} +
-        ', Book Store: ' + ${book.getBookStore()}">
+        ', Book Store: ' + ${book.getBookStore()} +
+        ', Reviews: ' + ${book.getBookRating()}">
             <a th:href="'/books/delete/'+${book.getId()}">Delete</a>
             <a th:href="'/books/edit/'+${book.getId()}">Edit</a>
         </ul>
@@ -32,6 +33,15 @@
     </form>
     <form method="get" action="/books/add">
         <input type="submit" value="Add Book"></br>
+    </form>
+    <form method="get" action="/bookstores/add">
+        <input type="submit" value="Add book-store">
+    </form>
+    <form method="get" action="/reviews/add">
+        <input type="submit" value="Add reviews">
+    </form>
+    <form method="get" action="/author/add">
+        <input type="submit" value="Add authors">
     </form>
 <!--    <input type="radio" name="bookIsbn" value="1"> Book 1 <br/>-->
 <!--    <input type="radio" name="bookIsbn" value="2"> Book 2<br/>-->

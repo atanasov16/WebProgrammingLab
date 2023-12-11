@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BookRepositoryJpa extends JpaRepository<Book, String> {
+public interface BookRepositoryJpa extends JpaRepository<Book, Long> {
     Book findByIsbn(String isbn);
 }

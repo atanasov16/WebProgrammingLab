@@ -10,15 +10,21 @@ import java.util.List;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String isbn;
-    String title;
-    String genre;
-    int year;
-    @ManyToMany
-    List<Author> bookAuthors;
     private long id;
+    private String title;
+    private String genre;
+    private int year;
+    private String isbn;
+    @ManyToMany
+    private List<Author> bookAuthors;
     @ManyToOne
     private BookStore bookStore;
+
+    @OneToMany
+    private List<Review> reviews;
+
+    private float rating;
+
     public Book(){}
 
     public Book(String isbn, String title, String genre, int year, BookStore bookStore) {
@@ -71,5 +77,9 @@ public class Book {
     }
     public Long getBookStoreId(){
         return this.bookStore.getId();
+    }
+
+    public double getBookRating(){
+        return reviews.stream().mapToDouble(Review::getScore).average().orElse(0.0);
     }
 }

@@ -50,13 +50,13 @@ public class BookController {
         BookStore theBookStore = bookStoreService.findAll().stream().filter(b -> b.getId().equals(bookStoreId)).findFirst().get();
         int bookyear = Integer.parseInt(year);
         Book book = new Book(isbn, title, genre, bookyear, theBookStore);
-        bookService.listBooks().add(book);
+        bookService.save(book);
         return "redirect:/books";
     }
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id){
         Book book = bookService.listBooks().stream().filter(b -> b.getId()==id).findFirst().get();
-        bookService.listBooks().remove(book);
+        bookService.DeleteById(id);
         return "redirect:/books";
     }
     @PostMapping("/edit/{bookId}")
@@ -74,6 +74,8 @@ public class BookController {
         book.setTitle(title);
         book.setYear(bookyear);
         book.setGenre(genre);
+        bookService.DeleteById(bookStoreId);
+        bookService.save(book);
         return "redirect:/books";
     }
     @GetMapping("/edit/{bookId}")
