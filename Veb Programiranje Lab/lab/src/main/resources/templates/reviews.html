@@ -18,12 +18,17 @@
     <!-- Display radio buttons for each book,
             the value should be the isbn
             and the displayed text should be Title: <bookTitle>, Genre:<genre>, Year: <year> -->
+    <form th:action="@{/reviews/filtered}" method="get">
+        From: <input type="date" name="fromDate">
+        To: <input type="date" name="toDate">
+        <input type="submit" value="Filter">
+    </form>
     <ul th:each="review : ${reviews}">
         <li th:text="
         'Score: ' + ${review.getScore()} +
         ', Description: ' + ${review.getDescription()} +
-        ', Book: ' + ${review.getBook()} +
-        ', timestamp' + ${review.getTimestamp()}">
+        ', Book: ' + ${review.getBook().getTitle()} +
+        ', timestamp' + ${review.getFormattedDateCreated()}">
     </ul>
     <form method="get" action="/reviews/add">
         <input type="submit" value="Add review"></br>

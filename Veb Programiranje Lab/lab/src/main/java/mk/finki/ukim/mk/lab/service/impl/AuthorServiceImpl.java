@@ -1,6 +1,7 @@
 package mk.finki.ukim.mk.lab.service.impl;
 
 import mk.finki.ukim.mk.lab.model.Author;
+import mk.finki.ukim.mk.lab.model.AuthorFullname;
 import mk.finki.ukim.mk.lab.model.Book;
 import mk.finki.ukim.mk.lab.repository.AuthorRepository;
 import mk.finki.ukim.mk.lab.repository.jpa.AuthorRepositoryJpa;
@@ -31,8 +32,8 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Optional<Author> save(Long id, String name, String surname) {
-        authorRepository.findAll().add(new Author(id,name,surname));
-        return Optional.of(authorRepository.save(new Author(id, name, surname)));
+        authorRepository.findAll().add(new Author(id,name, surname));
+        return Optional.of(authorRepository.save(new Author(id,name, surname)));
     }
 
     @Override

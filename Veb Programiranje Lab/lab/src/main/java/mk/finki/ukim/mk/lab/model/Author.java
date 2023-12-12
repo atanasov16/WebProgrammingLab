@@ -1,9 +1,6 @@
 package mk.finki.ukim.mk.lab.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,16 +12,25 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Convert(converter = AuthorFullnameConverter.class)
+    private AuthorFullname authorFullname;
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDate dateOfBirth;
     private String name;
     private String surname;
     private String biography;
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDate dateOfBirth;
     public Author(){}
+    public Author(Long id, AuthorFullname authorFullname, String biography, LocalDate date) {
+        this.id = id;
+        this.authorFullname= authorFullname;
+        this.biography = biography;
+        this.dateOfBirth = date;
+    }
+
     public Author(Long id, String name, String surname) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
+        this.authorFullname = new AuthorFullname(name, surname);
     }
 
     public LocalDate getDateOfBirth() {

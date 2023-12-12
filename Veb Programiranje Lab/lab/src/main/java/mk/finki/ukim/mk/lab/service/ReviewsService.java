@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface ReviewsService {
     List<Review> findAll();
     Optional<Review> save(Integer score, String description, Book book, LocalDateTime timestamp);
+    List<Review> filterByDate(LocalDateTime from, LocalDateTime to);
 }

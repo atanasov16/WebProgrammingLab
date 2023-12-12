@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ReviewRepository {
@@ -16,4 +17,5 @@ public class ReviewRepository {
         this.reviews = new ArrayList<>();
         this.reviews = reviews;
     }
+
 }
