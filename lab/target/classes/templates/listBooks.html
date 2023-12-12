@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Books Homepage - Welcome to My Book Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Book Store</h1>
+</header>
+<main>
+    <h2>Choose book:</h2>
+    <!-- Display radio buttons for each book,
+            the value should be the isbn
+            and the displayed text should be Title: <bookTitle>, Genre:<genre>, Year: <year> -->
+    <form th:action="@{/books/filteredGenres}" method="get">
+        Genre: <input type="text" name="genreFilter">
+        <input type="submit" value="Filter by genre">
+    </form></br>
+    <form th:action="@{/books/filteredTitles}" method="get">
+        Title: <input type="text" name="titleFilter">
+        <input type="submit" value="Filter by title">
+    </form></br>
+    <form method="get" th:action="'/author/list'">
+        <ul th:each="book : ${books}">
+            <input type="radio" name="selectedBookIsbn" th:value="${book.getIsbn()}" th:text="
+        'Title: ' + ${book.getTitle()} +
+        ', Genre: ' + ${book.getGenre()} +
+        ', Year: ' + ${book.getProdYear()} +
+        ', Book Store: ' + ${book.getBookStore()} +
+        ', Reviews: ' + ${book.getBookRating()}">
+            <a th:href="'/books/delete/'+${book.getId()}">Delete</a>
+            <a th:href="'/books/edit/'+${book.getId()}">Edit</a>
+        </ul>
+        <input type="submit" value="Submit">
+    </form>
+    <form method="get" action="/books/add">
+        <input type="submit" value="Add Book"></br>
+    </form>
+    <form method="get" action="/bookstores/add">
+        <input type="submit" value="Add book-store">
+    </form>
+    <form method="get" action="/reviews/add">
+        <input type="submit" value="Add reviews">
+    </form>
+    <form method="get" action="/author/add">
+        <input type="submit" value="Add authors">
+    </form>
+<!--    <input type="radio" name="bookIsbn" value="1"> Book 1 <br/>-->
+<!--    <input type="radio" name="bookIsbn" value="2"> Book 2<br/>-->
+<!--    <input type="radio" name="bookIsbn" value="3"> Book 3 <br/>-->
+</main>
+</body>
+</html>
